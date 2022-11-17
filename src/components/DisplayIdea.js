@@ -1,5 +1,7 @@
-import { Spinner } from "react-bootstrap";
+import { CircularProgress } from "@mui/material";
+import { Alert, Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import * as CommonConstants from "../common/commonConstants";
 
 function DisplayIdea() {
   const randomIdea = useSelector((state) => state);
@@ -7,16 +9,31 @@ function DisplayIdea() {
     <div className="ideaboard">
       {randomIdea.loading === true &&
       randomIdea.randomIdea.key === undefined ? (
-        <Spinner></Spinner>
+        <CircularProgress color="inherit" />
       ) : (
         <p></p>
       )}
       {randomIdea.loading === false &&
       randomIdea.randomIdea.key !== undefined ? (
         <>
-          <h1>Here is your random idea</h1>
-          <h2>{randomIdea.randomIdea.type}</h2>
-          <h2>{randomIdea.randomIdea.activity}</h2>
+          <h2>
+            <Badge bg="secondary">Type</Badge>&nbsp;
+            {CommonConstants.capitalizeFirstLetter(randomIdea.randomIdea.type)}
+          </h2>
+          <h2>
+            <Alert variant="success">
+              <b>{/*  <Badge bg="secondary">Idea</Badge> */}</b>
+              &nbsp;&nbsp;
+              <img
+                alt="Here is your idea"
+                src="/idea.webp"
+                class="MuiAvatar-img "
+                height="40"
+                width="40"
+              />
+              &nbsp;&nbsp;"{randomIdea.randomIdea.activity}"
+            </Alert>
+          </h2>
         </>
       ) : (
         <p></p>

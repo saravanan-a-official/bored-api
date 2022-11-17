@@ -1,4 +1,4 @@
-import Button from "react-bootstrap/Button";
+import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import DisplayIdea from "../components/DisplayIdea";
 import { getAnIdea } from "../redux/action";
@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <h1>Boring API</h1>
-      You bored?{" "}
-      <Button variant="primary" onClick={() => dispatch(getAnIdea())}>
-        Get an idea!
+      You bored? Get an idea&nbsp;
+      <Button variant="contained" onClick={() => dispatch(getAnIdea())}>
+        here!
       </Button>
       <DisplayIdea />
     </div>
